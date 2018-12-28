@@ -20,7 +20,7 @@ namespace Assignment.Controllers
             _context = context;
         }
 
-        [Authorize]
+        [Authorize(Roles = "canPost, canComment")]
         // GET: BlogPosts
         public async Task<IActionResult> Index()
         {
@@ -60,6 +60,7 @@ namespace Assignment.Controllers
             return viewModel;
         }
 
+        [Authorize(Roles = "canComment")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Details([Bind("BlogPostID, CommentContent")] BlogPostDetailsViewModel viewModel)
@@ -98,6 +99,7 @@ namespace Assignment.Controllers
         // POST: BlogPosts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "canPost")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Post")] BlogPost blogPost)

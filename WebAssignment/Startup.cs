@@ -65,7 +65,7 @@ namespace WebAssignment
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -84,7 +84,7 @@ namespace WebAssignment
 
             app.UseAuthentication();
 
-            DbSeeder.SeedDb(context, userManager);
+            DbSeeder.SeedDb(context, userManager, roleManager);
 
             app.UseMvc(routes =>
             {

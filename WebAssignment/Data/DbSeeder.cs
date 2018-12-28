@@ -10,11 +10,12 @@ namespace WebAssignment.Data
 {
     public class DbSeeder
     {
-        public static void SeedDb(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public static void SeedDb(ApplicationDbContext context, UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             CreateData(context);
-            //CreateUsers(userManager);
-            AddUserAndRole(context);
+            CreateRoles(roleManager);
+            CreateUsers(userManager);
         }
 
         private static void CreateData(ApplicationDbContext context)
@@ -28,39 +29,108 @@ namespace WebAssignment.Data
 
         private static void CreateUsers(UserManager<IdentityUser> userManager)
         {
-            IdentityUser user = new IdentityUser
+            if (userManager.FindByNameAsync("Member1@email.com").Result == null)
             {
-                UserName = "Sam@email.com",
-                Email = "Sam@email.com",
-            };
+                IdentityUser user = new IdentityUser();
+                user.UserName = "Member1@email.com";
 
-            userManager.CreateAsync(user, "Password123!").Wait();
+                IdentityResult result = userManager.CreateAsync
+                (user, "Password123!").Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "canPost").Wait();
+                }
+            }
+
+            if (userManager.FindByNameAsync("Customer1@email.com").Result == null)
+            {
+                IdentityUser user = new IdentityUser();
+                user.UserName = "Customer1@email.com";
+
+                IdentityResult result = userManager.CreateAsync
+                (user, "Password123!").Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "canComment").Wait();
+                }
+            }
+
+            if (userManager.FindByNameAsync("Customer2@email.com").Result == null)
+            {
+                IdentityUser user = new IdentityUser();
+                user.UserName = "Customer2@email.com";
+
+                IdentityResult result = userManager.CreateAsync
+                (user, "Password123!").Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "canComment").Wait();
+                }
+            }
+
+            if (userManager.FindByNameAsync("Customer3@email.com").Result == null)
+            {
+                IdentityUser user = new IdentityUser();
+                user.UserName = "Customer3@email.com";
+
+                IdentityResult result = userManager.CreateAsync
+                (user, "Password123!").Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "canComment").Wait();
+                }
+            }
+
+            if (userManager.FindByNameAsync("Customer4@email.com").Result == null)
+            {
+                IdentityUser user = new IdentityUser();
+                user.UserName = "Customer4@email.com";
+
+                IdentityResult result = userManager.CreateAsync
+                (user, "Password123!").Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "canComment").Wait();
+                }
+            }
+
+            if (userManager.FindByNameAsync("Customer5@email.com").Result == null)
+            {
+                IdentityUser user = new IdentityUser();
+                user.UserName = "Customer5@email.com";
+
+                IdentityResult result = userManager.CreateAsync
+                (user, "Password123!").Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "canComment").Wait();
+                }
+            }
         }
 
-        private static bool AddUserAndRole(ApplicationDbContext context)
+        private static void CreateRoles(RoleManager<IdentityRole> roleManager)
         {
-            RoleManager<IdentityRole> roleManager;
-            IdentityRole role = new IdentityRole();
-            role.Name = "canPost";
-            IdentityResult roleResult = roleManager.CreateAsync(role).Result;
+            if (!roleManager.RoleExistsAsync("canPost").Result)
+            {
+                IdentityRole role = new IdentityRole();
+                role.Name = "canPost";
+                IdentityResult roleResult = roleManager.
+                CreateAsync(role).Result;
+            }
 
-
-
-            //IdentityResult ir;
-            //var rm = new RoleManager<IdentityRole>
-            //    (new RoleStore<IdentityRole>(context));
-            //ir = rm.Create(new IdentityRole("canPost"));
-            //var um = new UserManager<IdentityUser>
-            //    (new UserStore<IdentityUser>(context));
-            //var user = new IdentityUser()
-            //{
-            //    UserName = "Member1@email.com",
-            //};
-            //ir = um.Create(user, "Password123!");
-            //if (ir.Succeeded == false)
-            //    return ir.Succeeded;
-            //ir = um.AddToRole(user.Id, "canPost");
-            //return ir.Succeeded;
+            if (!roleManager.RoleExistsAsync("canComment").Result)
+            {
+                IdentityRole role = new IdentityRole();
+                role.Name = "canComment";
+                IdentityResult roleResult = roleManager.
+                CreateAsync(role).Result;
+            }
         }
     }
 }
