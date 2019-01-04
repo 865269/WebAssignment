@@ -69,7 +69,7 @@ namespace Assignment.Controllers
             {
                 Comment comment = new Comment();
 
-                comment.CommentContent = viewModel.CommentContent;
+                comment.CommentContent = viewModel.Comment;
 
                 BlogPost blogPost = await _context.BlogPost
                 .FirstOrDefaultAsync(m => m.Id == viewModel.BlogPostID);

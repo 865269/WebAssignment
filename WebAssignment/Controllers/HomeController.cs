@@ -17,14 +17,14 @@ namespace WebAssignment.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "CSC348 Web Application Coursework";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "CSC348 Web Application Coursework Contact Page";
 
             return View();
         }

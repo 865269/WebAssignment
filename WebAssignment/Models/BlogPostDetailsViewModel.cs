@@ -11,6 +11,6 @@ namespace WebAssignment.Models
         public List<Comment> Comments { get; set; }
 
         public int BlogPostID { get; set; }
-        public string CommentContent { get; set; }
+        public string Comment { get; set; }
     }
 }
