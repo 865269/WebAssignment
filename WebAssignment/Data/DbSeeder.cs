@@ -13,7 +13,7 @@ namespace WebAssignment.Data
         public static void SeedDb(ApplicationDbContext context, UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
-            CreateData(context);
+            //CreateData(context);
             CreateRoles(roleManager);
             CreateUsers(userManager);
         }

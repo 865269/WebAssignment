@@ -20,7 +20,7 @@ namespace Assignment.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "canPost, canComment")]
+        
         // GET: BlogPosts
         public async Task<IActionResult> Index()
         {
@@ -113,7 +113,9 @@ namespace Assignment.Controllers
             return View(blogPost);
         }
 
+        
         // GET: BlogPosts/Edit/5
+        [Authorize(Roles = "canPost")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -132,6 +134,7 @@ namespace Assignment.Controllers
         // POST: BlogPosts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "canPost")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Post")] BlogPost blogPost)
@@ -165,6 +168,7 @@ namespace Assignment.Controllers
         }
 
         // GET: BlogPosts/Delete/5
+        [Authorize(Roles = "canPost")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -182,8 +186,10 @@ namespace Assignment.Controllers
             return View(blogPost);
         }
 
+        
         // POST: BlogPosts/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "canPost")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
