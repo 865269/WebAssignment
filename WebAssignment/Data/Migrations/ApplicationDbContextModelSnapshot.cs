@@ -193,7 +193,7 @@ namespace WebAssignment.Data.Migrations
                     b.ToTable("BlogPost");
                 });
 
-            modelBuilder.Entity("WebAssignment.Models.Comment", b =>
+            modelBuilder.Entity("WebAssignment.Models.CommentContent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -207,7 +207,7 @@ namespace WebAssignment.Data.Migrations
 
                     b.HasIndex("MyBlogPostId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("CommentContent");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -255,7 +255,7 @@ namespace WebAssignment.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("WebAssignment.Models.Comment", b =>
+            modelBuilder.Entity("WebAssignment.Models.CommentContent", b =>
                 {
                     b.HasOne("WebAssignment.Models.BlogPost", "MyBlogPost")
                         .WithMany()

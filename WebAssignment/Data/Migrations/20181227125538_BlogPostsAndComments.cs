@@ -49,7 +49,7 @@ namespace WebAssignment.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comment",
+                name: "CommentContent",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -70,14 +70,14 @@ namespace WebAssignment.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comment_MyBlogPostId",
-                table: "Comment",
+                table: "CommentContent",
                 column: "MyBlogPostId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Comment");
+                name: "CommentContent");
 
             migrationBuilder.DropTable(
                 name: "BlogPost");
