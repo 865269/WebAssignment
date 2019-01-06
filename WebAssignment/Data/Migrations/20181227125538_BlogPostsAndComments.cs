@@ -65,7 +65,7 @@ namespace WebAssignment.Data.Migrations
                         column: x => x.MyBlogPostId,
                         principalTable: "BlogPost",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

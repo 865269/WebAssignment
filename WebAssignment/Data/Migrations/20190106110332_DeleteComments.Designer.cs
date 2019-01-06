@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAssignment.Data;
 
 namespace WebAssignment.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190106110332_DeleteComments")]
+    partial class DeleteComments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,8 +203,7 @@ namespace WebAssignment.Data.Migrations
 
                     b.Property<string>("CommentContent");
 
-                    b.Property<int?>("MyBlogPostId")
-                        .IsRequired();
+                    b.Property<int?>("MyBlogPostId");
 
                     b.HasKey("Id");
 
@@ -259,9 +260,8 @@ namespace WebAssignment.Data.Migrations
             modelBuilder.Entity("WebAssignment.Models.Comment", b =>
                 {
                     b.HasOne("WebAssignment.Models.BlogPost", "MyBlogPost")
-                        .WithMany("CommentList")
-                        .HasForeignKey("MyBlogPostId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("MyBlogPostId");
                 });
 #pragma warning restore 612, 618
         }

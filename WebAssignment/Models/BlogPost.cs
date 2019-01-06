@@ -12,5 +12,7 @@ namespace WebAssignment.Models
         public int Id { get; set; }
 
         public String Post { get; set; }
+
+        public virtual List<Comment> CommentList { get; set; }
     }
 }

@@ -15,5 +15,15 @@ namespace WebAssignment.Data
         }
         public DbSet<WebAssignment.Models.BlogPost> BlogPost { get; set; }
         public DbSet<WebAssignment.Models.Comment> Comment { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Comment>()
+                .HasOne(b => b.MyBlogPost)
+                .WithMany(a => a.CommentList)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }
