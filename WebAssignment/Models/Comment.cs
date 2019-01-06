@@ -11,6 +11,8 @@ namespace WebAssignment.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        [MinLength(1), MaxLength(50)]
         public String CommentContent { get; set; }
 
         public virtual BlogPost MyBlogPost { get; set; }
