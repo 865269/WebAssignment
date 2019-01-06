@@ -12,7 +12,7 @@ namespace WebAssignment.Models
         public int Id { get; set; }
 
         [Required]
-        [MinLength(50), MaxLength(500]]
+        [MinLength(1), MaxLength(500)]
         public String Post { get; set; }
 
         public virtual List<Comment> CommentList { get; set; }

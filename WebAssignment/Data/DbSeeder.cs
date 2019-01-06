@@ -13,18 +13,28 @@ namespace WebAssignment.Data
         public static void SeedDb(ApplicationDbContext context, UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
-            //CreateData(context);
+            CreateData(context);
             CreateRoles(roleManager);
             CreateUsers(userManager);
         }
 
         private static void CreateData(ApplicationDbContext context)
         {
+
             context.Database.EnsureCreated();
 
-            context.BlogPost.Add(new BlogPost() { Post = "Test1" });
+            AddNewBlogPost(new BlogPost() { Post = "Test Post" }, context );
 
             context.SaveChanges();
+        }
+
+        private static void AddNewBlogPost(BlogPost blogPost, ApplicationDbContext context)
+        { 
+            var existingBlogPost = context.BlogPost.FirstOrDefault(p => p.Post == blogPost.Post);
+            if (existingBlogPost == null)
+            {
+                context.BlogPost.Add(blogPost);
+            }
         }
 
         private static void CreateUsers(UserManager<IdentityUser> userManager)
