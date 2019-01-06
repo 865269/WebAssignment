@@ -194,10 +194,7 @@ namespace Assignment.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var blogPost = await _context.BlogPost.FindAsync(id);
-            //var comment = await _context.Comment.Where(x => x.MyBlogPost == blogPost).ToListAsync();
-            //var comment = await _context.Comment.FindAsync(id);
             _context.BlogPost.Remove(blogPost);
-            //_context.Comment.Remove(comment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
