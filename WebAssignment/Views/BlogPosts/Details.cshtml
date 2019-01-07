@@ -5,6 +5,7 @@
 }
 
 <div>
+<div>
     <h4>Blog Post</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -38,7 +39,9 @@
     </tbody>
 </table>
 
-<h4>Write New Comment</h4>
+<div id="new_comment">
+    <h4>Write New Comment</h4>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -61,3 +64,11 @@
     <a asp-action="Edit" asp-route-id="@Model.BlogPost.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+</div>
+
+<style>
+    #new_comment {
+        color:red;
+        text-align:center;
+    }
+</style>
